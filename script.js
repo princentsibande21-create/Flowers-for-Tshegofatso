@@ -1,0 +1,8 @@
+const intro=document.getElementById('intro'),choice=document.getElementById('choice'),letter=document.getElementById('letter');
+document.getElementById('heartBtn').addEventListener('click',()=>{intro.classList.add('hidden');choice.classList.remove('hidden');burst()});
+document.querySelectorAll('.yes').forEach(b=>b.addEventListener('click',()=>{choice.classList.add('hidden');letter.classList.remove('hidden');burst();window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}));
+const canvas=document.getElementById('sparkles'),ctx=canvas.getContext('2d');let bits=[];
+function resize(){canvas.width=innerWidth*devicePixelRatio;canvas.height=innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}addEventListener('resize',resize);resize();
+function burst(){for(let i=0;i<90;i++){let a=Math.random()*Math.PI*2,s=1+Math.random()*4;bits.push({x:innerWidth/2,y:innerHeight*.42,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:50+Math.random()*40,size:1+Math.random()*3})}}
+function draw(){ctx.clearRect(0,0,innerWidth,innerHeight);bits=bits.filter(p=>p.life-->0);for(const p of bits){p.x+=p.vx;p.y+=p.vy;p.vy+=.025;p.vx*=.99;ctx.globalAlpha=Math.max(0,p.life/70);ctx.fillStyle=Math.random()>.5?'#ff8db9':'#ffe3ee';ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1;requestAnimationFrame(draw)}draw();
+setInterval(()=>{if(Math.random()>.45)bits.push({x:Math.random()*innerWidth,y:innerHeight+5,vx:(Math.random()-.5)*.5,vy:-.6-Math.random(),life:110,size:1+Math.random()*2})},250);
