@@ -1,5 +1,3 @@
-Tshegofatso's personalised Flowers That Never Die
+A Thousand Times, Still You — a little love note for Tshegofatso from Andile.
 
-Open index.html in a modern browser. No internet connection is required.
-
-Personalised for Tshegofatso, from Andile.
+Keep index.html, styles.css, script.js and us.jpg together in the repository root.
